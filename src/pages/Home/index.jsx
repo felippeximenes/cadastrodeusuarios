@@ -25,6 +25,9 @@ const inputEmail = useRef()
       email: inputEmail.current.value
     })
 
+    async function deleteUsers(id) {
+      await api.delete(`/usuarios/${id}`)
+    }
     
   
   }
@@ -50,7 +53,7 @@ const inputEmail = useRef()
             <p>Idade:<span>{user.age}</span></p>
             <p>Email:<span>{user.email}</span></p>
           </div>
-          <button>
+          <button onClick={()=> deleteUsers(user.id)}>
             <img src={Trash} />
           </button>
         </div>
