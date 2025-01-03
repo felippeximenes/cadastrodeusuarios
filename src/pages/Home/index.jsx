@@ -1,26 +1,23 @@
 
 import './style.css'
 import Trash from '../../assets/lixo.svg'
+import api from '../../services/api'
+import { useEffect } from 'react'
 
 function Home() {
 
-  const users = [{
-    id: '234sfafsasf',
-    name: 'Rodolfo',
-    age: 33,
-    email: 'felippe@emmail.com',
-  }, {
-    id: '1231afafg',
-    name: 'Eliana',
-    age: 38,
-    email: 'eliana@emmail.com',
-  }, {
-    id: '1231afafg',
-    name: 'Fulana',
-    age: 22,
-    email: 'fulana@emmail.com',
-  }]
+  let users = []
 
+  async function getUsers() {
+    const usersFromApi = await api.get('/usuarios')
+
+    users = usersFromApi.data
+    console.log(users)
+  }
+
+  useEffect (() => {
+    getUsers()
+  }, [])
 
   return (
     <div className='container'>
